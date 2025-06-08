@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./kotlin
+    container_name: kotlin-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - ../../:/workspace
+    working_dir: /workspace
+    env_file:
+      - ../.env
+    networks:
+      - container-link
+
+  # https://www.postgresql.org/docs/release/
+  db:
+    image: postgres:17.5-bookworm
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../.env
+    networks:
+      - container-link
+
+  # https://github.com/flyway/flyway/releases
+  # https://hub.docker.com/r/flyway/flyway/tags
+  flyway:
+    image: flyway/flyway:11.9
+    container_name: flyway
+    depends_on:
+      - db
+    volumes:
+      - ../flyway/sql:/flyway/sql
+      - ../flyway/conf:/flyway/conf
+    env_file:
+      - ../.env
+    command: -configFiles=/flyway/conf/flyway.conf migrate
+    networks:
+      - container-link
+
+  # https://github.com/wiremock/wiremock-docker/releases
+  # https://hub.docker.com/r/wiremock/wiremock/tags
+  wiremock:
+    image: wiremock/wiremock:3.13.0-1
+    container_name: wiremock
+    ports:
+      - "8082:8080"
+    volumes:
+      - ../wiremock/__files:/home/wiremock/__files
+      - ../wiremock/mappings:/home/wiremock/mappings
+    networks:
+      - container-link
+
+networks:
+  container-link:
+    name: dev.internal
+    driver: bridge

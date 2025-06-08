@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "workspace",
+      "path": "."
+    },
+    {
+      "name": "kotlin-spring-boot-app", // サブフォルダの名前
+      "path": "projects/kotlin-spring-boot-app"
+    }
+  ],
+}

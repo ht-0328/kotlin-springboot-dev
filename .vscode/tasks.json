@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Gradle: クリーン",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/gradle-clean.sh",
+      "detail": "Kotlin + Spring Boot アプリのビルドをクリーンアップします"
+    },
+    {
+      "label": "Gradle: ビルド",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/gradle-build.sh",
+      "detail": "Kotlin + Spring Boot アプリをビルドして JAR を作成します"
+    },
+    {
+      "label": "Gradle: テスト",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/gradle-test.sh",
+      "detail": "JUnit によるテストを実行します"
+    },
+    {
+      "label": "Gradle: 依存関係の確認",
+      "type": "shell",
+      "command": "./projects/kotlin-spring-boot-app/gradlew dependencies",
+      "detail": "依存関係のツリーを表示して、使用しているライブラリを確認します"
+    },
+  ]
+}
