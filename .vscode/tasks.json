@@ -25,5 +25,17 @@
       "command": "./projects/kotlin-spring-boot-app/gradlew dependencies",
       "detail": "依存関係のツリーを表示して、使用しているライブラリを確認します"
     },
+    {
+      "label": "Gradle: フォーマット",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/gradle-spotless.sh",
+      "detail": "コードのフォーマットを整えます。"
+    },
+    {
+      "label": "Gradle: 実行",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/gradle-bootRun.sh",
+      "detail": "アプリを実行します"
+    },
   ]
 }
