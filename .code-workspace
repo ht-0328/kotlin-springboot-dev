@@ -5,8 +5,11 @@
       "path": "."
     },
     {
-      "name": "kotlin-spring-boot-app", // サブフォルダの名前
+      "name": "kotlin-spring-boot-app",
       "path": "projects/kotlin-spring-boot-app"
     }
   ],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "interactive"
+  },
 }
