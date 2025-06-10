@@ -3,6 +3,8 @@ plugins {
     id("org.springframework.boot") version "3.4.3"
     // Spring Boot の依存関係を一括管理するプラグイン
     id("io.spring.dependency-management") version "1.1.4"
+    // コードフォーマットやスタイルを整えるためのプラグイン: https://github.com/diffplug/spotless/releases
+    id("com.diffplug.spotless") version "6.25.0"
     // Kotlin を JVM で動作させるためのプラグイン
     kotlin("jvm") version "2.1.10"
     // Spring Boot を Kotlin で使う際の最適化プラグイン（`open` 不要など）
@@ -48,4 +50,13 @@ application {
 // JUnit 5 を使うようにテスト設定
 tasks.named<Test>("test") {
     useJUnitPlatform()
+}
+
+spotless {
+    kotlin {
+        // https://pinterest.github.io/ktlint/latest/
+        ktlint("1.6.0") 
+        
+        target("src/**/*.kt")
+    }
 }
