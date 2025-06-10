@@ -5,7 +5,7 @@ function fn() {
   var config = {};
 
   if (env == 'dev') {
-    config.baseUrl = 'http://localhost:8080';
+    config.baseUrl = 'http://app:8080';
   } else if (env == 'wiremock') {
     config.baseUrl = 'http://wiremock:8080';
   } else {
