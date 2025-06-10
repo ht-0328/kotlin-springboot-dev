@@ -1,3 +1,6 @@
 .devcontainer/git/
 .devcontainer/karate/result/
 .devcontainer/scripts/devlopment/vsix/
+projects/kotlin-spring-boot-app/.kotlin/
+projects/kotlin-spring-boot-app/app/bin/
+projects/kotlin-spring-boot-app/app/build/
