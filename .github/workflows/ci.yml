@@ -1,0 +1,30 @@
+name: ビルド用CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ソースコードを取得
+        uses: actions/checkout@v3
+
+      - name: JDK 17 をセットアップ
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Gradle をセットアップ
+        uses: gradle/gradle-build-action@v2
+
+      - name: gradlew に実行権限付与
+        run: chmod +x projects/kotlin-spring-boot-app/gradlew
+
+      - name: ビルド＆テスト実行
+        run: cd projects/kotlin-spring-boot-app && ./gradlew build
