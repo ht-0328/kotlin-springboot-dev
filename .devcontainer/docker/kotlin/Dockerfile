@@ -38,6 +38,8 @@ RUN set -eux && \
     postgresql-client \
     # ターミナル操作補助
     less \
+    # dockerコマンド
+    docker.io \
     # タイムゾーン設定用パッケージ
     tzdata && \
     # タイムゾーンを日本（東京）に設定
@@ -89,6 +91,12 @@ RUN set -eux && \
     unzip /tmp/gradle.zip -d /opt/gradle && \
     # 解凍後、一時ファイルを削除
     rm /tmp/gradle.zip
+
+###### act（GitHub Actionsローカル実行ツール）のインストール ######
+
+RUN set -eux && \
+    curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
+
 
 # 作業ディレクトリの設定
 WORKDIR /workspace

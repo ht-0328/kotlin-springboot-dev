@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  app:
+    # Docker権限を付与（DevContainer内でdockerコマンドを使うため）
+    privileged: true
+    # ホストのDockerを共有（actがDockerを操作できるようにする）
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
