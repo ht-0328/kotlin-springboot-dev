@@ -1,3 +1,5 @@
+import helper.openapi.*
+
 plugins {
     // Spring Boot のプラグイン（アプリの起動や JAR の作成を簡単にする）
     id("org.springframework.boot") version "3.4.3"
@@ -54,9 +56,17 @@ tasks.named<Test>("test") {
 
 spotless {
     kotlin {
-        // https://pinterest.github.io/ktlint/latest/
-        ktlint("1.6.0") 
-        
-        target("src/**/*.kt")
+        ktlint("1.6.0")
+        target(
+            // 通常の Kotlin ファイル
+            "**/*.kt",
+            // buildSrc の Kotlin ファイル
+            "../buildSrc/src/**/*.kt"
+        )
     }
 }
+
+
+openApiGeneratorSetup()
+generateApiYamlTask()
+registerOpenApiGenerateTask()

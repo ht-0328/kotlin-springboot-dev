@@ -1,0 +1,26 @@
+openapi: 3.0.1
+info:
+  # ← APIの名前をここに書く
+  title: サンプルAPI
+  # ← バージョンをここに記述
+  version: 1.0.0
+
+paths:
+  # ← エンドポイント（例：GET /hello）
+  /hello:
+    get:
+      # ← 概要
+      summary: サンプルのGETエンドポイント
+      # ← コントローラの関数名になる
+      operationId: getHello
+      responses:
+        '200':
+          description: 成功時のレスポンス
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: こんにちは！
