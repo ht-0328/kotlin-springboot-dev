@@ -5,7 +5,8 @@
       "label": "Gradle: クリーン",
       "type": "shell",
       "command": "bash ./.devcontainer/scripts/gradle/gradle-clean.sh",
-      "detail": "Kotlin + Spring Boot アプリのビルドをクリーンアップします"
+      "detail": "Kotlin + Spring Boot アプリのビルドをクリーンアップします",
+      "problemMatcher": []
     },
     {
       "label": "Gradle: ビルド",
@@ -37,5 +38,18 @@
       "command": "bash ./.devcontainer/scripts/gradle/gradle-bootRun.sh",
       "detail": "アプリを実行します"
     },
+    {
+      "label": "Gradle: OpenAPIのYAMLの雛形生成",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/generate-api-yaml.sh",
+      "detail": "OpenAPIのYAMLファイルの雛形を生成します。これにより、APIの仕様をドキュメント化できます"
+    },
+    {
+      "label": "Gradle: OpenAPIで定義を自動生成",
+      "type": "shell",
+      "command": "bash ./.devcontainer/scripts/gradle/generate-openapi.sh",
+      "detail": "OpenAPIの定義を自動生成します。これにより、APIの仕様をコードに反映できます",
+      "problemMatcher": []
+    }
   ]
 }
