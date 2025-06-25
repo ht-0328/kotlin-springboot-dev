@@ -1,26 +1,89 @@
+# OpenAPIのバージョン。springdoc-openapiやOpenAPI Generatorで使う場合は3.xが主流
 openapi: 3.0.1
 info:
-  # ← APIの名前をここに書く
-  title: サンプルAPI
-  # ← バージョンをここに記述
-  version: 1.0.0
+  # APIのタイトル（例: サンプルAPIやユーザー管理APIなど）
+  title: {{title}}
+  # APIのバージョン（例: 1.0.0）
+  version: {{version}}  
 
 paths:
-  # ← エンドポイント（例：GET /hello）
-  /hello:
-    get:
-      # ← 概要
+  # エンドポイントのパス。REST APIのURIに相当。ここではGET /hello を定義
+  /hello: 
+    # HTTPメソッド（GET）。POSTやPUTなどもここに記述できる 
+    get:  
+      # エンドポイントの概要（Swagger UIの表示に出る）
       summary: サンプルのGETエンドポイント
-      # ← コントローラの関数名になる
+      # コントローラの関数名になる。PascalCaseで命名するとクラス名になったりする
       operationId: getHello
       responses:
+        # HTTPステータスコード
         '200':
-          description: 成功時のレスポンス
+          # ← レスポンスの説明
+          description: 正常時のレスポンス
           content:
+            # ← レスポンスのContent-Type（application/jsonをよく使う）
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: こんにちは！
+                # ← 実際のレスポンスの型（DTO）をスキーマとして参照
+                $ref: '#/components/schemas/HelloResponse'
+
+components:
+  schemas:
+    # 実際のレスポンスDTOに相当する部分。OpenAPI Generatorでは data class に変換される。
+    HelloResponse:
+      # スキーマの名前。OpenAPI GeneratorではKotlinのdata class名になる
+      title: HelloResponse
+      # JSON上のオブジェクト形式（Kotlinのdata classに対応）
+      type: object
+      # 必須フィールド。Kotlinではnullableにならない
+      required:
+        - id     
+        - name
+      properties:
+        id:
+          # JSON上での整数型
+          type: integer
+          # 整数型（KotlinではIntになる）
+          # フォーマット指定。int32 = Int、int64 = Longに変換される
+          format: int32
+          # フィールドの説明。model.mustacheではコメントとして出力される
+          description: ID
+        name:
+          # JSON上での文字列型
+          type: string         
+          description: 名前
+        # 任意フィールド（requiredに含まれていない）
+        # Kotlinでは `val message: String? = null` のようにnullableになる
+        message:
+          # JSON上での文字列型
+          type: string
+          description: メッセージ（任意）
+        birthday:
+          # JSON上での文字列型
+          type: string
+          # ← LocalDateになる（Kotlin側で java.time.LocalDate に変換）
+          format: date
+          description: 誕生日（例: 2000-01-01）
+        lastLoginAt:
+          # JSON上での文字列型
+          type: string
+          # ← OffsetDateTimeになる（Kotlin側で java.time.OffsetDateTime に変換）
+          format: date-time
+          description: 最終ログイン日時（例: 2025-06-24T12:00:00+09:00）
+        active:
+          # Boolean
+          type: boolean
+          description: アクティブ状態
+        scores:
+          # → List<Float>
+          type: array
+          items:
+            type: number
+            # Float
+            format: float
+          description: スコアのリスト
+        userType:
+          type: string
+          # → enum class UserType
+          enum: [ADMIN, USER, GUEST]
+          description: ユーザー種別

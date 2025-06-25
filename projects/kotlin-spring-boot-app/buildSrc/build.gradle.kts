@@ -15,6 +15,6 @@ dependencies {
 spotless {
     kotlin {
         ktlint("1.6.0")
-        target("src/**/*.kt")
+        target("src/main/kotlin/**/*.kt")
     }
 }

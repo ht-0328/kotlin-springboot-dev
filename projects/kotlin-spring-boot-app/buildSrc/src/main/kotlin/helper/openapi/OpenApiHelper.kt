@@ -78,17 +78,51 @@ fun Project.configureOpenApiGenerateTask(
         outputDir.set("${project.projectDir}")
         apiPackage.set("$pkg.controller")
         modelPackage.set("$pkg.dto")
+        templateDir.set("${rootProject.projectDir}/buildSrc/templates/custom-templates")
+
         configOptions.set(
             mapOf(
                 "useSpringBoot3" to "true",
                 "interfaceOnly" to "true",
+                "dateLibrary" to "custom",
+                "useBeanValidation" to "false",
+                "swagger2AnnotationLibrary" to "false",
             ),
         )
+
         globalProperties.set(
             mapOf(
                 "apis" to "",
                 "models" to "",
             ),
+        )
+
+        typeMappings.set(
+            mapOf(
+                "string" to "String",
+                "integer" to "Int",
+                "integer+int32" to "Int",
+                "integer+int64" to "Long",
+                "number" to "Double",
+                "number+float" to "Float",
+                "number+double" to "Double",
+                "boolean" to "Boolean",
+                "array" to "List",
+                "string+date" to "LocalDate",
+                "string+date-time" to "LocalDateTime",
+            ),
+        )
+
+        importMappings.set(
+            mapOf(
+                // Kotlin基本型は書かない！
+                "LocalDate" to "java.time.LocalDate",
+                "LocalDateTime" to "java.time.LocalDateTime",
+            ),
+        )
+
+        languageSpecificPrimitives.set(
+            setOf("String", "Int", "Long", "Float", "Double", "Boolean", "List"),
         )
     }
 
