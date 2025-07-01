@@ -4,3 +4,5 @@
 projects/kotlin-spring-boot-app/.kotlin/
 projects/kotlin-spring-boot-app/app/bin/
 projects/kotlin-spring-boot-app/app/build/
+.devcontainer/.gemini/user_id
+.devcontainer/.secrets.env

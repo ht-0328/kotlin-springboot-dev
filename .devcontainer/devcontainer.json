@@ -7,8 +7,13 @@
     "service": "app",
     "workspaceFolder": "/workspace",
     "overrideCommand": true,
+    "postStartCommand": "/bin/bash .devcontainer/scripts/docker/apply-secrets.sh",
     "mounts": [
-        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/.devcontainer/git/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/.devcontainer/git/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+        "source=${localWorkspaceFolder}/.devcontainer/.gemini,target=/root/.gemini,type=bind,consistency=cached",
+
     ],
     "customizations": {
         "vscode": {

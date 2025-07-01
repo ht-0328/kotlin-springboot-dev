@@ -97,6 +97,14 @@ RUN set -eux && \
 RUN set -eux && \
     curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
 
+###### Node.js (LTS 22.x) + Gemini CLI のインストール ######
+RUN set -eux && \
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+    apt-get install -y nodejs && \
+    node -v && npm -v && \
+    npm install -g @google/gemini-cli
+
+
 
 # 作業ディレクトリの設定
 WORKDIR /workspace
