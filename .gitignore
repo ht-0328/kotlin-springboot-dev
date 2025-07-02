@@ -6,3 +6,8 @@ projects/kotlin-spring-boot-app/app/bin/
 projects/kotlin-spring-boot-app/app/build/
 .devcontainer/.gemini/user_id
 .devcontainer/.secrets.env
+.devcontainer/scripts/gemini/chat/result/
+.devcontainer/scripts/gemini/chat/prompt.txt
+.devcontainer/scripts/gemini/chat/history.json
+.devcontainer/scripts/gemini/createFile/history.json
+.devcontainer/scripts/gemini/createFile/prompt.txt
